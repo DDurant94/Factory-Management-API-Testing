@@ -1,0 +1,47 @@
+Unit Testing and Mocking for API Endpoints
+Objective: The objective of this assignment is to practice writing unit tests for API endpoints in the factory management system using the 
+unittest module in Python. Additionally, students will learn how to use mocking to simulate external dependencies and isolate the tests from 
+the rest of the application.
+
+Problem Statement: 
+  You are tasked with writing unit tests for the API endpoints in the factory management system to ensure that each endpoint behaves as expected 
+  and handles various scenarios correctly. Additionally, you need to use mocking to simulate external dependencies, such as database interactions 
+  or external API calls, to isolate the tests and ensure that they run independently.
+
+Task 1: Setup Testing Environment
+
+ Create a separate folder named tests to store all the test files.
+ Install the necessary testing libraries, including unittest and requests, using the following command:
+  pip install unittest requests
+
+Task 2: Write Unit Tests for Each Endpoint
+
+  Create a test class for each endpoint in the factory management system, such as TestEmployeeEndpoints, TestProductEndpoints, 
+  TestOrderEndpoints, TestCustomerEndpoints, and TestProductionEndpoints.
+  Write three individual test methods within each test class to test different scenarios for the corresponding endpoint.
+  Use the unittest.TestCase class and its assertion methods to verify the expected behavior of each endpoint.
+  Ensure that each test method is isolated and independent of other test methods to prevent interference.
+
+Task 3: Implement Mocking for External Dependencies
+
+  Use the unittest.mock module to mock external dependencies, such as database interactions or external API calls, within the test cases.
+  Mock the database queries or API responses to simulate two scenarios and edge cases that may occur during testing.
+  Verify that the endpoint behaves correctly under different mocked conditions and handles exceptions gracefully.
+
+Task 4: Run and Validate Unit Tests
+
+  Run all the unit tests using the following command:
+
+    Validate the test results to ensure that all tests pass successfully without any failures or errors.
+    If any test fails, debug the issue by reviewing the test code, endpoint implementation, and mock configurations to identify and fix the 
+    problem.
+
+Expected Outcomes:
+
+Upon completing this assignment, students should achieve the following outcomes:
+
+Creation of a comprehensive set of unit tests for each API endpoint in the factory management system.
+Utilization of the unittest module to organize and run the unit tests effectively.
+Implementation of mocking to simulate external dependencies and isolate the tests from the rest of the application.
+Successful execution of unit tests with passing results, demonstrating the correctness and reliability of the API endpoints under different 
+scenarios and conditions.

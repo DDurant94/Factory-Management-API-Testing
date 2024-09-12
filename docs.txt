@@ -1,0 +1,166 @@
+About:
+        In Factory Management, you will find several files that control this API, making for a modular design perfect for readability, 
+    navigation, and debugging purposes. Each file has a purpose specified by its name. Within each folder, each table of the database has a 
+    file that is specific to that folder’s purpose. With its RESTful API design, it is easy to scale this program to whatever the user needs for 
+    their growing business. I have used SQLAlchemy to help with API calls and validation of data so that no stone is left unturned. I have also 
+    implemented caching and limiters to ensure that information can be accessed quickly and easily by storing it locally. The limiters I have 
+    installed ensure that the API doesn’t get overwhelmed and crash due to high traffic or strain.
+
+        There are five groups of endpoints that the user can interact with: customer, employee, product, production, and order. All five groups can 
+    create/add and view data at this point in the program’s design. The only endpoint that will stand out to you is “view orders.” I have set up 
+    this endpoint to present all of the customer’s information and products ordered, including a total for each item ordered and the total amount 
+    with tax (9%) spent on that order. This allows the front-end to present the information without needing to parse it.
+
+    Another notable feature within this program is that when adding an item’s production at the end of the day, the stock is automatically 
+    updated to reflect that information by calling an instance of that product and changing the quantity available. The same happens when you 
+    add an order; the stock is automatically decreased.
+
+        If you want to play around with this API and see it in action, all you need to do is set up a database in MySQL Workbench and enter your 
+    password into config.py under SQLALCHEMY_DATABASE_URI. Then, return to README.MD and follow the Postman link once you have the program up 
+    and running from app.py.
+    
+    Added Features:
+        Version 2:
+            Exploring (ROM Object-Relational Mapping) and Advanced Search Queries:
+            This project includes advanced search queries with SQLAlchemy and pagination, allowing the API to manage the amount of information 
+            loaded per page. Pagination has been added to the Orders and Products GET endpoints. The advanced search queries include Employee 
+            Production Report, Top Selling Products, Customer Lifetime Value, and Orders and Production Report. All these features can be 
+            found at the Postman link provided on my README page. 
+
+            Searches:
+                Employee Production:
+                    This endpoint displays the total number of products an employee has produced from the time they started with the company to 
+                    the present.
+
+                Top Selling Products:
+                    This endpoint displays the total quantity of each product that has been sold grouping them by name and ordering them in 
+                    decreased order.
+
+                Customer Lifetime Value:
+                    This endpoint displays the total amount of money each customer has spent with the company, provided it exceeds a set 
+                    threshold. By using halving with SQLAlchemy.
+
+                Orders:
+                    This endpoint now displays all information related to each order, including customer details, product information, and the 
+                    remaining stock in inventory.
+
+                Production Report:
+                    This endpoint displays the total amount produced by each product on a given date by using a sub-query to filter the dates. 
+
+            Pagination:
+                Orders:
+                    Added paginate(amount of information the API gets at one time) to orders to display 10 orders on one page at a time as the 
+                    default.
+
+                Products:
+                    Added paginate(amount of information the API gets at one time) to products to display 10 orders on one page at a time as the 
+                    default.
+
+        Version 3:
+            API security and password hashing:
+                In this project, I have implemented new endpoints that allow roles and users to be created and used to control access to 
+                different endpoints. When a new user is created, the password is hashed into the database and validated when the user logs 
+                into the application. This ensures the safekeeping of valuable information and makes it harder for injection attacks on the 
+                database. API security was the focus of this project. By using JWT and OAuth, we ensure that the security measures are of 
+                the highest quality for everyday use and scalability, fitting the users’ goals and needs. 
+
+            Endpoints:
+                Create User (post):
+                    When creating a user, you will need a username and password. The role parameter is optional; if not specified, the user will 
+                    automatically be added to the user role.
+
+                User SignIn (post):
+                    This endpoint authenticates the user’s login and returns a success message along with a token that grants access to different 
+                    areas of the application. If the user does not have authorization, they will receive a message informing them that they do 
+                    not have access to that area.
+
+                Get Users (get):
+                    Endpoint for viewing all users admin required.
+
+                Create Role (post):
+                    Adding roles to the application allows users to be assigned specific authorizations for different areas within the application.
+
+                Get Roles (get):
+                    Endpoint for viewing all roles admin required.
+
+        Version 4:
+            API Testing and Mocking for API Endpoints:
+
+    Folders Explanation:
+
+        Controllers:
+                Controllers are where all the data is reviewed using SQLAlchemy to serialize and deserialize data that is given to and received 
+            from the database, ensuring the data submitted is in the correct format. When the information doesn’t meet the requirements, 
+            implemented error handling lets the user know where they went wrong.
+
+        Models:
+                Models lay out each table’s columns, rows, and relationships with other tables to grant access to that information. They also 
+            tell the database what kind of information it is looking for, whether it be a string, integer, list, or dictionary. Additionally, 
+            they can set restrictions on how long or short the data can be for each row, ensuring that the user enters the correct information.
+
+            Schemas:
+                Schemas is a subfolder of Models where the controller checks its data against a schema (model or template) to see if the 
+                information matches the columns for that table. 
+
+        Routes:
+                Routes specify how the URL should look to find the endpoint for the specified operation you want to perform. Each blueprint can 
+            hold several routes, allowing for insertion, selection, deletion, and modification of information within the database.
+
+        Services:
+                Services is where all the ‘magic’ happens. All the data is validated and meticulously reviewed to ensure that when tables share 
+            information, it is indeed the correct type of information to be associated with one another. For instance, a product’s stock is 
+            automatically updated when the day’s production is entered at the end of the day. Data can be parsed and modified within services.
+
+PIP Installs:
+    Refer to requirements.txt
+    You can also run this code in the terminal after you create a virtual environment.
+    ("pip install Flask SQLAlchemy marshmallow flask-marshmallow Flask-SQLAlchemy Flask-Caching mysql-connector-python marshmallow-sqlalchemy circuitbreaker Flask-Limiter flask-cors pyjwt python-dotenv")
+
+Questions:
+    Unit Testing and Mocking for API Endpoints
+    Objective: The objective of this assignment is to practice writing unit tests for API endpoints in the factory management system using the 
+    unittest module in Python. Additionally, students will learn how to use mocking to simulate external dependencies and isolate the tests from 
+    the rest of the application.
+
+    Problem Statement: 
+    You are tasked with writing unit tests for the API endpoints in the factory management system to ensure that each endpoint behaves as expected 
+    and handles various scenarios correctly. Additionally, you need to use mocking to simulate external dependencies, such as database interactions 
+    or external API calls, to isolate the tests and ensure that they run independently.
+
+    Task 1: Setup Testing Environment
+
+    Create a separate folder named tests to store all the test files.
+    Install the necessary testing libraries, including unittest and requests, using the following command:
+    pip install unittest requests
+
+    Task 2: Write Unit Tests for Each Endpoint
+
+    Create a test class for each endpoint in the factory management system, such as TestEmployeeEndpoints, TestProductEndpoints, 
+    TestOrderEndpoints, TestCustomerEndpoints, and TestProductionEndpoints.
+    Write three individual test methods within each test class to test different scenarios for the corresponding endpoint.
+    Use the unittest.TestCase class and its assertion methods to verify the expected behavior of each endpoint.
+    Ensure that each test method is isolated and independent of other test methods to prevent interference.
+
+    Task 3: Implement Mocking for External Dependencies
+
+    Use the unittest.mock module to mock external dependencies, such as database interactions or external API calls, within the test cases.
+    Mock the database queries or API responses to simulate two scenarios and edge cases that may occur during testing.
+    Verify that the endpoint behaves correctly under different mocked conditions and handles exceptions gracefully.
+
+    Task 4: Run and Validate Unit Tests
+
+    Run all the unit tests using the following command:
+
+        Validate the test results to ensure that all tests pass successfully without any failures or errors.
+        If any test fails, debug the issue by reviewing the test code, endpoint implementation, and mock configurations to identify and fix the 
+        problem.
+
+    Expected Outcomes:
+
+    Upon completing this assignment, students should achieve the following outcomes:
+
+    Creation of a comprehensive set of unit tests for each API endpoint in the factory management system.
+    Utilization of the unittest module to organize and run the unit tests effectively.
+    Implementation of mocking to simulate external dependencies and isolate the tests from the rest of the application.
+    Successful execution of unit tests with passing results, demonstrating the correctness and reliability of the API endpoints under different 
+    scenarios and conditions.
