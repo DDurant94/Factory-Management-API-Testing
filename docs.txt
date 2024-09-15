@@ -85,6 +85,22 @@ About:
 
         Version 4:
             API Testing and Mocking for API Endpoints:
+                This version includes testing for the Factory Management API, excluding testing endpoints and services with mock data. This ensures 
+            that my code is prepared for all situations, whether it’s handling incorrectly entered data or verifying that the code functions as 
+            intended.
+
+                I have used Faker, requests, and unittest to achieve this. Faker generates mock data for use with the API, while requests allow me 
+            to interact with the API endpoints to send or retrieve data. Unittest integrates everything, enabling testing without directly 
+            inputting data into the database.
+
+                Such testing should be done before building the application to define the data structure before the API is operational. I have 
+            set up mock data functions to ensure that data entered into services maintains a consistent structure, serving as a control while 
+            working with them. This approach allows each service to handle the same type of data used across all endpoints.
+
+                In conclusion, testing like this is great for validating the performance, security, and reliability of the API and its 
+            structure. It allows a coder like myself to identify areas where my code may be lacking and needing improvement, ensuring a 
+            better-performing API while isolating each part of the code. If you want to see the tests in action hope over to the test folder and 
+            give them a run.
 
     Folders Explanation:
 
@@ -111,10 +127,18 @@ About:
             information, it is indeed the correct type of information to be associated with one another. For instance, a product’s stock is 
             automatically updated when the day’s production is entered at the end of the day. Data can be parsed and modified within services.
 
+        Utils:
+            Utils is responsible for validating and hashing data. It allows access to different endpoints by creating and validating tokens, 
+            granting users the necessary access.
+
+        Tests:
+            Testing is essential for evaluating each part of the code in isolation, ensuring improvements in the structure of the code that 
+            runs the API.
+
 PIP Installs:
     Refer to requirements.txt
     You can also run this code in the terminal after you create a virtual environment.
-    ("pip install Flask SQLAlchemy marshmallow flask-marshmallow Flask-SQLAlchemy Flask-Caching mysql-connector-python marshmallow-sqlalchemy circuitbreaker Flask-Limiter flask-cors pyjwt python-dotenv")
+    ("pip install Flask SQLAlchemy marshmallow flask-marshmallow Flask-SQLAlchemy Flask-Caching mysql-connector-python marshmallow-sqlalchemy circuitbreaker Flask-Limiter flask-cors pyjwt python-dotenv Faker pytest pytest-mock requests")
 
 Questions:
     Unit Testing and Mocking for API Endpoints

@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from database import db
 from circuitbreaker import circuit
 from sqlalchemy import select,func
+from sqlalchemy.exc import SQLAlchemyError
 
 from models.customer import Customer
 from models.product import Product
@@ -32,7 +33,7 @@ def find_all():
   query = select(Customer)
   customers = db.session.execute(query).scalars().all()
   return customers
-
+      
 def lifetime_value():
   query = db.session.query(Customer.name, 
           func.sum(OrderProducts.quantity * Product.price).label('value')).join(Order, 

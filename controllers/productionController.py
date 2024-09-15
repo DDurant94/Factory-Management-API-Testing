@@ -24,7 +24,7 @@ def save():
 @role_required('admin')
 def find_all():
   all_production = productionService.find_all()
-  return all_production_schema.jsonify(all_production)
+  return all_production_schema.jsonify(all_production),200
 
 @token_required
 @role_required('admin')

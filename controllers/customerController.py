@@ -22,8 +22,8 @@ def save():
 @token_required
 @role_required('admin')
 def find_all():
-  customers = customerService.find_all()
-  return customers_schema.jsonify(customers), 200
+    customers = customerService.find_all()
+    return customers_schema.jsonify(customers), 200
 
 @token_required
 @role_required('admin')

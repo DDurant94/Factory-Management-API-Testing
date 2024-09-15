@@ -5,7 +5,6 @@ from limiter import limiter
 from caching import cache
 from flask_cors import CORS
 
-
 from models.customer import Customer
 from models.order import Order
 from models.product import Product
